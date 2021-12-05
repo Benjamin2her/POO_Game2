@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
@@ -45,6 +46,7 @@ public class PooGame extends ApplicationAdapter {
 	private int score = 0;
 	private int lives = 100;
 	private float angle = 0f;
+	private BitmapFont font;
 	
 	@Override
 	public void create () {
@@ -69,6 +71,9 @@ public class PooGame extends ApplicationAdapter {
 		//rainMusic.setLooping(true);
 		//rainMusic.setVolume(0.2f);
 		//rainMusic.play();
+
+		//	Inicializamos font
+		font= new BitmapFont();
 
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
 		camera = new OrthographicCamera();
@@ -96,6 +101,8 @@ public class PooGame extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(highwayImage, 0, 0);
 		batch.draw( player.image, player.x, player.y);
+
+		font.draw(batch, "CARRITOS", 100,100);
 
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
