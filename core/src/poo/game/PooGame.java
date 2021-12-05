@@ -73,7 +73,7 @@ public class PooGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		// INSTANCIAMOS LA IMAGEN DE LA CUBETA EN EL JUEGO USANDO UN RECTÁNGULO
-		bucket	  = new Player(800/2 - 64/2, 20, playerImage);
+		player	  = new Player(800/2 - 64/2, 20, playerImage);
 
 		rainDrops = new Array<Object>();
 
@@ -90,7 +90,7 @@ public class PooGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		batch.draw(highwayImage, 0, 0);
-		batch.draw(bucket.image, bucket.x, bucket.y);
+		batch.draw( player, bucket.x, bucket.y);
 
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
@@ -103,7 +103,7 @@ public class PooGame extends ApplicationAdapter {
 			Vector3 touchPos = new Vector3();
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 			camera.unproject(touchPos);
-			bucket.x = touchPos.x - 64 / 2;
+			player.x = touchPos.x - 64 / 2;
 		}
 
 		// DETECTA EVENTO DE TECLADO Y AFECTA POSICIÓN DEL PLAYER
