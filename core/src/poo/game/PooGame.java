@@ -3,6 +3,7 @@ package poo.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -26,6 +27,7 @@ public class PooGame extends ApplicationAdapter {
 	private Texture bucketImage;
 	private Texture hailstoneImage;
 	private Texture camionImage;
+	//private
 	private Sound 	dropSound;
 	private Sound hitSound;
 	private Music 	rainMusic;
@@ -35,7 +37,8 @@ public class PooGame extends ApplicationAdapter {
 	private Array<Object> rainDrops; //carros
 	private long lastDropTime;
 	private int score = 0;
-	private int lives = 3;
+	private int lives = 5;
+	private float angle = 0f;
 	
 	@Override
 	public void create () {
@@ -58,7 +61,9 @@ public class PooGame extends ApplicationAdapter {
 
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 800, 480);
+		//camera.setToOrtho(false, 860, 480);
+		camera.setToOrtho(true);
+
 		batch = new SpriteBatch();
 
 		// INSTANCIAMOS LA IMAGEN DE LA CUBETA EN EL JUEGO USANDO UN RECTÁNGULO
@@ -72,6 +77,7 @@ public class PooGame extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 
+		camera.rotate(angle+= 0.1f);
 		camera.update();
 
 		// RENDERIZADO DE IMAGENES
@@ -81,6 +87,7 @@ public class PooGame extends ApplicationAdapter {
 
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
+
 		}
 		batch.end();
 
@@ -162,11 +169,11 @@ public class PooGame extends ApplicationAdapter {
 
 		if(MathUtils.random(0, 3) == 0) {
 			// GENERA GRANIZO CON 25% DE PROBABILIDAD
-			rain = new Hailstone(MathUtils.random(0, 800-64),480, camionImage);
+			rain = new Hailstone(MathUtils.random(0, 480-64),480, camionImage);
 		}
 		else{
 			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
-			rain = new Drop(MathUtils.random(0, 800-64),480, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
+			rain = new Drop(MathUtils.random(0, 480-64),480, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
 		}
 
 		rainDrops.add(rain);
