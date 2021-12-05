@@ -103,7 +103,7 @@ public class PooGame extends ApplicationAdapter {
 		batch.draw( player.image, player.x, player.y);
 
 		font.draw(batch, "CARRITOS", 100,100);
-
+		font.
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
 
