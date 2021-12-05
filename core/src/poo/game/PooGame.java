@@ -176,11 +176,11 @@ public class PooGame extends ApplicationAdapter {
 
 		if(MathUtils.random(0, 3) == 0) {
 			// GENERA GRANIZO CON 25% DE PROBABILIDAD
-			rain = new Hailstone(MathUtils.random(0, 840-64),650, camionImage);
+			rain = new Hailstone(MathUtils.random(140, 650),650, camionImage);
 		}
 		else{
 			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
-			rain = new Drop(MathUtils.random(0, 840-64),650, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
+			rain = new Drop(MathUtils.random(140, 650),650, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
 		}
 
 		rainDrops.add(rain);
