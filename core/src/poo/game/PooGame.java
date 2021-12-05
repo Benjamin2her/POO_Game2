@@ -27,6 +27,8 @@ public class PooGame extends ApplicationAdapter {
 	private Texture bucketImage;
 	private Texture hailstoneImage;
 	private Texture camionImage;
+	private Texture highway;
+
 	//private
 	private Sound 	dropSound;
 	private Sound hitSound;
@@ -37,7 +39,7 @@ public class PooGame extends ApplicationAdapter {
 	private Array<Object> rainDrops; //carros
 	private long lastDropTime;
 	private int score = 0;
-	private int lives = 5;
+	private int lives = 100;
 	private float angle = 0f;
 	
 	@Override
@@ -49,6 +51,7 @@ public class PooGame extends ApplicationAdapter {
 		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
 		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
 		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
+		highway = new Texture(Gdx.files.internal("background-1.png"));
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
@@ -62,7 +65,7 @@ public class PooGame extends ApplicationAdapter {
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
 		camera = new OrthographicCamera();
 		//camera.setToOrtho(false, 860, 480);
-		camera.setToOrtho(true);
+		camera.setToOrtho(false);
 
 		batch = new SpriteBatch();
 
@@ -77,12 +80,13 @@ public class PooGame extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 
-		camera.rotate(angle+= 0.1f);
+		///camera.rotate(angle+= 0.1f);
 		camera.update();
 
 		// RENDERIZADO DE IMAGENES
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		batch.draw(highway, 0, 0);
 		batch.draw(bucket.image, bucket.x, bucket.y);
 
 		for(Object raindrop: rainDrops) {
@@ -104,8 +108,8 @@ public class PooGame extends ApplicationAdapter {
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();
 
 		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
-		if(bucket.x < 0) bucket.x = 0;
-		if(bucket.x > 800 - 64) bucket.x = 800 - 64;
+		if(bucket.x < 140) bucket.x = 140;
+		if(bucket.x > 650) bucket.x = 650;
 
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
 		if(System.currentTimeMillis() - lastDropTime > 1000) {
@@ -169,11 +173,11 @@ public class PooGame extends ApplicationAdapter {
 
 		if(MathUtils.random(0, 3) == 0) {
 			// GENERA GRANIZO CON 25% DE PROBABILIDAD
-			rain = new Hailstone(MathUtils.random(0, 480-64),480, camionImage);
+			rain = new Hailstone(MathUtils.random(0, 840-64),650, camionImage);
 		}
 		else{
 			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
-			rain = new Drop(MathUtils.random(0, 480-64),480, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
+			rain = new Drop(MathUtils.random(0, 840-64),650, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
 		}
 
 		rainDrops.add(rain);
