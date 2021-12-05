@@ -23,7 +23,7 @@ public class Hailstone extends Object {
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
     public void speed(){
-        this.y -= 1000 * Gdx.graphics.getDeltaTime();
+        this.y -= 200 * Gdx.graphics.getDeltaTime();
     }
 
 }
