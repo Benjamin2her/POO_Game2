@@ -29,6 +29,8 @@ public class PooGame extends ApplicationAdapter {
 	private Texture camionImage;
 	private Texture highwayImage;
 	private Texture playerImage;
+	private Texture carritoAzulImage;
+	private Texture carritoAmarilloImage;
 
 	//private
 	private Sound 	dropSound;
@@ -54,6 +56,8 @@ public class PooGame extends ApplicationAdapter {
 		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
 		highwayImage = new Texture(Gdx.files.internal("background-1.png"));
 		playerImage = new Texture(Gdx.files.internal("carrito_player.png"));
+		carritoAzulImage = new Texture(Gdx.files.internal("carrito_azul.png"));
+		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
 
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
@@ -180,7 +184,7 @@ public class PooGame extends ApplicationAdapter {
 		}
 		else{
 			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
-			rain = new Drop(MathUtils.random(140, 650),650, MathUtils.random(0, 1)==0?dropOilImage :dropWaterImage);
+			rain = new Drop(MathUtils.random(140, 650),650, MathUtils.random(0, 1)==0?carritoAmarilloImage : carritoAzulImage);
 		}
 
 		rainDrops.add(rain);
