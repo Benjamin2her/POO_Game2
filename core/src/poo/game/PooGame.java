@@ -46,14 +46,14 @@ public class PooGame extends ApplicationAdapter {
 		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
 
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
-		dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-		hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
-		rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
+		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
+		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
+		//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
 
 		// INICIA SONIDO DE FONDO
-		rainMusic.setLooping(true);
-		rainMusic.setVolume(0.2f);
-		rainMusic.play();
+		//rainMusic.setLooping(true);
+		//rainMusic.setVolume(0.2f);
+		//rainMusic.play();
 
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
 		camera = new OrthographicCamera();
