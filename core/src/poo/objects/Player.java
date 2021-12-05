@@ -3,7 +3,7 @@ package poo.objects;
 import com.badlogic.gdx.graphics.Texture;
 
 // CLASE Player QUE HEREDA DE CLASE Object
-public class Player extends Object {
+public class Player extends Object{
 
     // CONSTRUCTORES SOBRECARGADOS
     public Player(int x, int y, int w, int h, Texture img){

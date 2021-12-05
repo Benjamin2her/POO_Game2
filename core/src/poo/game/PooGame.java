@@ -25,13 +25,14 @@ public class PooGame extends ApplicationAdapter {
 	private Texture dropOilImage;
 	private Texture bucketImage;
 	private Texture hailstoneImage;
+	private Texture camionImage;
 	private Sound 	dropSound;
 	private Sound hitSound;
 	private Music 	rainMusic;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Player bucket;
-	private Array<Object> rainDrops;
+	private Array<Object> rainDrops; //carros
 	private long lastDropTime;
 	private int score = 0;
 	private int lives = 3;
@@ -44,7 +45,7 @@ public class PooGame extends ApplicationAdapter {
 		dropOilImage = new Texture(Gdx.files.internal("drop_oil.png"));
 		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
 		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
-
+		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
@@ -161,7 +162,7 @@ public class PooGame extends ApplicationAdapter {
 
 		if(MathUtils.random(0, 3) == 0) {
 			// GENERA GRANIZO CON 25% DE PROBABILIDAD
-			rain = new Hailstone(MathUtils.random(0, 800-64),480, hailstoneImage);
+			rain = new Hailstone(MathUtils.random(0, 800-64),480, camionImage);
 		}
 		else{
 			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
