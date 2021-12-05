@@ -31,6 +31,7 @@ public class PooGame extends ApplicationAdapter {
 	private Texture playerImage;
 	private Texture carritoAzulImage;
 	private Texture carritoAmarilloImage;
+	private Texture carritoGasImage;
 
 	//private
 	private Sound 	dropSound;
@@ -58,7 +59,7 @@ public class PooGame extends ApplicationAdapter {
 		playerImage = new Texture(Gdx.files.internal("carrito_player.png"));
 		carritoAzulImage = new Texture(Gdx.files.internal("carrito_azul.png"));
 		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
-
+		carritoGasImage = new Texture(Gdx.files.internal("carrito_gas.png"));
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));

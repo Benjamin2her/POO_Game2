@@ -24,7 +24,7 @@ public class Carro extends Object {
     @Override
     public void speed(){
         this.y -= 200 * Gdx.graphics.getDeltaTime();
-    }
+    } //
 
     public void speeds(){
         this.y -= 200 * Gdx.graphics.getDeltaTime();
