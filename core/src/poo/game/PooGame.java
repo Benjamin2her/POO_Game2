@@ -114,14 +114,14 @@ public class PooGame extends ApplicationAdapter {
 			raindrop.speed();
 			// DETECTA SI LA GOTA LLEGA AL SUELO
 			if(raindrop.y + 64 < 0) {
-				hitSound.play();
+				//hitSound.play();
 				iter.remove();
 				lives--;
 				System.out.println("Vidas: " + lives);
 			}
 			// DETECTA COLISIÓN CON PLAYER
 			if(raindrop.overlaps(bucket)) {
-				dropSound.play();
+				//dropSound.play();
 				iter.remove();
 				score++;
 				System.out.println("Score: " + score);
@@ -149,9 +149,9 @@ public class PooGame extends ApplicationAdapter {
 		dropOilImage.dispose();
 		hailstoneImage.dispose();
 		bucketImage.dispose();
-		dropSound.dispose();
-		hitSound.dispose();
-		rainMusic.dispose();
+		//dropSound.dispose();
+		//hitSound.dispose();
+		//rainMusic.dispose();
 		batch.dispose();
 	}
 
