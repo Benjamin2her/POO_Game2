@@ -36,7 +36,7 @@ public class PooGame extends ApplicationAdapter {
 	private Music 	rainMusic;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
-	private Player bucket;
+	private Player player;
 	private Array<Object> rainDrops; //carros
 	private long lastDropTime;
 	private int score = 0;
@@ -90,7 +90,7 @@ public class PooGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		batch.draw(highwayImage, 0, 0);
-		batch.draw( player, bucket.x, bucket.y);
+		batch.draw( player.image, player.x, player.y);
 
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
@@ -107,12 +107,12 @@ public class PooGame extends ApplicationAdapter {
 		}
 
 		// DETECTA EVENTO DE TECLADO Y AFECTA POSICIÓN DEL PLAYER
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) bucket.x -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) player.x -= 200 * Gdx.graphics.getDeltaTime();
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) player.x += 200 * Gdx.graphics.getDeltaTime();
 
 		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
-		if(bucket.x < 140) bucket.x = 140;
-		if(bucket.x > 650) bucket.x = 650;
+		if(player.x < 140) player.x = 140;
+		if(player.x > 650) player.x = 650;
 
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
 		if(System.currentTimeMillis() - lastDropTime > 1000) {
@@ -135,7 +135,7 @@ public class PooGame extends ApplicationAdapter {
 				System.out.println("Vidas: " + lives);
 			}
 			// DETECTA COLISIÓN CON PLAYER
-			if(raindrop.overlaps(bucket)) {
+			if(raindrop.overlaps(player)) {
 				//dropSound.play();
 				iter.remove();
 				score++;
@@ -145,7 +145,7 @@ public class PooGame extends ApplicationAdapter {
 
 		// TERMINA EL JUEGO EN CASO DE PERDER TODAS LAS VIDAS Y ELIMINA PLAYER Y OBJETOS RESTANTES
 		if(lives == 0) {
-			bucket = null;
+			player = null;
 			for (Array.ArrayIterator<Object> iter = rainDrops.iterator(); iter.hasNext(); ) {
 				iter.next();
 				iter.remove();
