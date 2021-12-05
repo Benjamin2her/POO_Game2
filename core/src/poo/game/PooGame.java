@@ -27,7 +27,8 @@ public class PooGame extends ApplicationAdapter {
 	private Texture bucketImage;
 	private Texture hailstoneImage;
 	private Texture camionImage;
-	private Texture highway;
+	private Texture highwayImage;
+	private Texture playerImage;
 
 	//private
 	private Sound 	dropSound;
@@ -51,7 +52,9 @@ public class PooGame extends ApplicationAdapter {
 		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
 		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
 		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
-		highway = new Texture(Gdx.files.internal("background-1.png"));
+		highwayImage = new Texture(Gdx.files.internal("background-1.png"));
+		playerImage = new Texture(Gdx.files.internal("carrito_player.png"));
+
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
@@ -70,7 +73,7 @@ public class PooGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		// INSTANCIAMOS LA IMAGEN DE LA CUBETA EN EL JUEGO USANDO UN RECTÁNGULO
-		bucket	  = new Player(800/2 - 64/2, 20, bucketImage);
+		bucket	  = new Player(800/2 - 64/2, 20, playerImage);
 
 		rainDrops = new Array<Object>();
 
@@ -86,7 +89,7 @@ public class PooGame extends ApplicationAdapter {
 		// RENDERIZADO DE IMAGENES
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(highway, 0, 0);
+		batch.draw(highwayImage, 0, 0);
 		batch.draw(bucket.image, bucket.x, bucket.y);
 
 		for(Object raindrop: rainDrops) {
