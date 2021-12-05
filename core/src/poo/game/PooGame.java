@@ -179,16 +179,27 @@ public class PooGame extends ApplicationAdapter {
 	private void spawnRaindrop() {
 		Object rain;
 
-		if(MathUtils.random(0, 3) == 0) {
-			// GENERA GRANIZO CON 25% DE PROBABILIDAD
-			rain = new Hailstone(MathUtils.random(140, 650),650, camionImage);
-		}
-		else{
-			// GENERA OBJETO GOTA CON 75% DE PROBABILIDAD, CON VARIANTE DE TEXTURA: GOTA DE ACEITE O DE AGUA (CON 50% DE PROBABILIDAD)
-			rain = new Drop(MathUtils.random(140, 650),650, MathUtils.random(0, 1)==0?carritoAmarilloImage : carritoAzulImage);
-		}
+	int random=MathUtils.random(0, 3);
 
+	switch(random){
+			case 0:
+				rain = new Hailstone(MathUtils.random(140, 650),650, camionImage);
+				break;
+
+			case 1:
+				rain = new Drop(MathUtils.random(140, 650),650,carritoAmarilloImage);
+				break;
+
+			case 2:
+				rain = new Drop(MathUtils.random(140, 650),650,carritoAzulImage);
+				break;
+
+			default:
+				rain = new Drop(MathUtils.random(140, 650),650,carritoGasImage);
+				break;
+			}
 		rainDrops.add(rain);
 		lastDropTime = System.currentTimeMillis();
+		}
 	}
-}
+
