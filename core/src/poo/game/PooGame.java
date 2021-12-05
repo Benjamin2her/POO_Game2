@@ -107,6 +107,7 @@ public class PooGame extends ApplicationAdapter {
 		batch.draw(highwayImage, 0, 0);
 		batch.draw( player.image, player.x, player.y);
 
+		//RENDERIZADO DE TEXTO -------------------------
 		font.draw(batch, "CARRITOS", 900,600);
 		font.getData().setScale(2f);
 		font.draw(batch, "Puntos", 900, 500);
