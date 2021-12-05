@@ -108,14 +108,14 @@ public class PooGame extends ApplicationAdapter {
 		batch.draw( player.image, player.x, player.y);
 
 		//RENDERIZADO DE TEXTO -------------------------
-		font.draw(batch, "CARRITOS", 900,600);
-		font.getData().setScale(2f);
-		font.draw(batch, "Puntos", 900, 500);
-		font.draw(batch, (puntos)+"", 900, 475);
-		font.draw(batch, "Velocidad", 900, 425);
-		font.draw(batch, velocidad+"", 900, 400);
-		font.draw(batch, "Gasolina", 900, 350);
-		font.draw(batch, (gasolina)+"", 900, 325);
+//		font.draw(batch, "CARRITOS", 900,600);
+//		font.getData().setScale(2f);
+//		font.draw(batch, "Puntos", 900, 500);
+//		font.draw(batch, (puntos)+"", 900, 475);
+//		font.draw(batch, "Velocidad", 900, 425);
+//		font.draw(batch, velocidad+"", 900, 400);
+//		font.draw(batch, "Gasolina", 900, 350);
+//		font.draw(batch, (gasolina)+"", 900, 325);
 
 		for(Object raindrop: rainDrops) {
 			batch.draw(raindrop.image, raindrop.x, raindrop.y);
