@@ -197,19 +197,19 @@ public class PooGame extends ApplicationAdapter {
 
 	switch(random){
 			case 0:
-				trafico = new Camion(MathUtils.random(140, 650),650, camionImage);
+				trafico = new Camion(165 +  3 * 121 - 64 ,650, camionImage); //226
 				break;
 
 			case 1:
-				trafico = new Carro(MathUtils.random(140, 650),650,carritoAmarilloImage);
+				trafico = new Carro(165 +  3 * 121 - 64,650,carritoAmarilloImage);
 				break;
 
 			case 2:
-				trafico = new Carro(MathUtils.random(140, 650),650,carritoAzulImage);
+				trafico = new Carro(MathUtils.random(165 + 107 * 2, 165 + 107 * 3),650,carritoAzulImage);
 				break;
 
 			default:
-				trafico = new Carro(MathUtils.random(140, 650),650,carritoGasImage);
+				trafico = new Carro(MathUtils.random(165 + 3 * 107, 590),650,carritoGasImage);
 				break;
 			}
 		carritos.add(trafico);
