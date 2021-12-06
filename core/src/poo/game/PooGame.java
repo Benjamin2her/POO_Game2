@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import poo.objects.Camion;
+import poo.objects.Carretera;
 import poo.objects.Carro;
 import poo.objects.Object;
 import poo.objects.Player;
@@ -20,10 +21,6 @@ import poo.objects.Player;
 public class PooGame extends ApplicationAdapter {
 
 
-//	private Texture dropWaterImage;
-//	private Texture dropOilImage;
-//	private Texture bucketImage;
-//	private Texture hailstoneImage;
 	private Texture camionImage;
 	private Texture highwayImage;
 	private Texture playerImage;
@@ -39,6 +36,7 @@ public class PooGame extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Player player;
+	private Carretera carretera;
 	private Array<Object> carritos; //carros
 	private long lastCarritoTime;
 	private int score = 0;
@@ -54,16 +52,14 @@ public class PooGame extends ApplicationAdapter {
 	public void create () {
 
 		// CARGADO DE IMAGENES
-//		dropWaterImage = new Texture(Gdx.files.internal("drop_water.png"));
-//		dropOilImage = new Texture(Gdx.files.internal("drop_oil.png"));
-//		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
-//		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
+
 		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
 		highwayImage = new Texture(Gdx.files.internal("background-1.png"));
 		playerImage = new Texture(Gdx.files.internal("carrito_player.png"));
 		carritoAzulImage = new Texture(Gdx.files.internal("carrito_azul.png"));
 		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
 		carritoGasImage = new Texture(Gdx.files.internal("carrito_gas.png"));
+
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
@@ -78,13 +74,14 @@ public class PooGame extends ApplicationAdapter {
 		font= new BitmapFont();
 
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
-
 		batch = new SpriteBatch();
 
 		// INSTANCIAMOS LA IMAGEN DEL JUGADOR EN EL JUEGO USANDO UN RECTÁNGULO
 		player	  = new Player(800/2 - 64/2, 20, playerImage);
+		carretera = new Carretera(0,0, highwayImage);
 		carritos = new Array<Object>();
 
 	}
@@ -99,7 +96,7 @@ public class PooGame extends ApplicationAdapter {
 		// RENDERIZADO DE IMAGENES
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(highwayImage, 0, 0);
+		batch.draw(carretera.image, carretera.x, carretera.y);
 		batch.draw( player.image, player.x, player.y);
 
 		//RENDERIZADO DE TEXTO -------------------------
@@ -115,19 +112,22 @@ public class PooGame extends ApplicationAdapter {
 		for(Object carrito: carritos) {
 			batch.draw(carrito.image, carrito.x, carrito.y);
 		}
+
 		batch.end();
 
-		// DETECTA EVENTO DEL MOUSE Y AFECTA POSICIÓN DEL PLAYER
-		if(Gdx.input.isTouched()) {
-			Vector3 touchPos = new Vector3();
-			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-			camera.unproject(touchPos);
-			player.x = touchPos.x - 64 / 2;
-		}
 
 		// DETECTA EVENTO DE TECLADO Y AFECTA POSICIÓN DEL PLAYER
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) player.x -= 500 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) player.x += 500 * Gdx.graphics.getDeltaTime();
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			player.x -= 500 * Gdx.graphics.getDeltaTime();
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			player.x += 500 * Gdx.graphics.getDeltaTime();
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			carretera.acelera();
+		}else{
+			carretera.frena();
+		}
 
 		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
 		if(player.x < 140) player.x = 140;
@@ -145,7 +145,7 @@ public class PooGame extends ApplicationAdapter {
 		for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
 			Object carrito = iter.next();
 			// MÉTODO PARA COMPORTAMIENTO POLIMÓRFICO
-			carrito.speed();
+			carrito.acelera();
 			// DETECTA SI El carro se sale del mapa
 			if(carrito.y + 64 < -100) {
 				//hitSound.play();

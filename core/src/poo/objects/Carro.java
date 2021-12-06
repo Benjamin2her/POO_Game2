@@ -22,12 +22,10 @@ public class Carro extends Object {
 
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
-    public void speed(){
-        this.y -= 400 * Gdx.graphics.getDeltaTime();
+    public void acelera(){
+        this.y -= 500 * Gdx.graphics.getDeltaTime();
     } //
 
-    public void speeds(){
-        this.y -= 400 * Gdx.graphics.getDeltaTime();
-    }
+
 
 }

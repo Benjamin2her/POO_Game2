@@ -22,8 +22,8 @@ public class Camion extends Object {
 
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
-    public void speed(){
-        this.y -= 200 * Gdx.graphics.getDeltaTime();
+    public void acelera(){
+        this.y -= 500 * Gdx.graphics.getDeltaTime();
     }
 
 }

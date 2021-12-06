@@ -7,7 +7,8 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Object extends Rectangle{
 
     public Texture image;
-
+    protected float velocidad = 0f;
+    protected float velocidadLimite = 5f;
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
 
@@ -22,6 +23,8 @@ public abstract class Object extends Rectangle{
         System.out.println("Object destroyed");
     }
 
-    public void speed() {};
-
+    public void acelera() {}
+    public void frena() {}
+    public void moverDerecha() {}
+    public void moverIzquierda() {}
 }
