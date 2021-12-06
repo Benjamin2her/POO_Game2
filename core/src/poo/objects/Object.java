@@ -7,8 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Object extends Rectangle{
 
     public Texture image;
-    protected float velocidad = 0f;
-    protected float velocidadLimite = 5f;
+    protected static float velocidad = 0f;
+    protected static float velocidadLimite = 5f;
+
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
 

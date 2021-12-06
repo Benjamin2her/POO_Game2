@@ -27,6 +27,8 @@ public class Camion extends Object {
     }
 
     public void chocar(Object a) {
-        //a.remove();
+        a.x = 390;
+        a.velocidad = 0f;
+       System.out.println("a destroyed");
     }
 }

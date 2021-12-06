@@ -34,4 +34,6 @@ public class Player extends Object{
         this.x += 400 * Gdx.graphics.getDeltaTime();
         if(this.x > 650) this.x = 650;
     }
+
+
 }

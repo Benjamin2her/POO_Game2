@@ -157,9 +157,9 @@ public class PooGame extends ApplicationAdapter {
 			if(carrito.overlaps(player)) {
 				//dropSound.play()
 				// iter.chocar();
-				//iter.chocar(player);
+				carrito.chocar(player);
 				score++;
-				System.out.println("Score: " + score);
+				//System.out.println("Score: " + score);
 			}
 		}
 
