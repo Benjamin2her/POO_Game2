@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import poo.objects.Camion;
 import poo.objects.Carretera;
 import poo.objects.Carro;
+import poo.objects.CarroAmarillo;
+import poo.objects.CarroAzul;
 import poo.objects.Object;
 import poo.objects.Player;
 
@@ -222,13 +224,13 @@ public class PooGame extends ApplicationAdapter {
 				trafico = new Camion(MathUtils.random(limIn, limSup), 650, camionImage);
 				break;
 			case 1:
-				trafico = new Carro(MathUtils.random(limIn, limSup) ,650,carritoAmarilloImage);
+				trafico = new CarroAmarillo(MathUtils.random(limIn, limSup) ,650,carritoAmarilloImage);
 				break;
 			case 2:
-				trafico = new Carro(MathUtils.random(limIn, limSup),650,carritoAzulImage);
+				trafico = new CarroAzul(MathUtils.random(limIn, limSup),650,carritoAzulImage);
 				break;
 			default:
-				trafico = new Carro(MathUtils.random(limIn, limSup),650,carritoGasImage);
+				trafico = new CarroGas(MathUtils.random(limIn, limSup),650,carritoGasImage);
 				break;
 		}
 		carritos.add(trafico);
