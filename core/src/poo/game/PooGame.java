@@ -189,31 +189,50 @@ public class PooGame extends ApplicationAdapter {
 		batch.dispose();
 	}
 
-	// MÉTODO DE UTILIDAD PARA GENERAR LAS GOTAS EN EL ESCENARIO
+	// MÉTODO DE UTILIDAD PARA GENERAR LoS carros EN EL ESCENARIO
 	private void spawnCarrito() {
 		Object trafico;
 
-	int random=MathUtils.random(0, 3);
+		int carril=MathUtils.random(0,3);
+		int limIn, limSup;
 
-	switch(random){
+		switch(carril){
 			case 0:
-				trafico = new Camion(MathUtils.random(175, 219), 650, camionImage); //226
+				limIn=175;
+				limSup=219;
 				break;
-
 			case 1:
-				trafico = new Carro(MathUtils.random(290, 353) ,650,carritoAmarilloImage);
+				limIn=290;
+				limSup=353;
 				break;
-
 			case 2:
-				trafico = new Carro(MathUtils.random(420, 485),650,carritoAzulImage);
+				limIn=420;
+				limSup=485;
 				break;
-
 			default:
-				trafico = new Carro(MathUtils.random(550, 610),650,carritoGasImage);
+				limIn=550;
+				limSup=610;
 				break;
-			}
+		}
+
+		int tipoCarro=MathUtils.random(0, 3);//aleatorio para ver en que carril sakldránswitch (tipoCarro){
+
+		switch(tipoCarro){
+			case 0:
+				trafico = new Camion(MathUtils.random(limIn, limSup), 650, camionImage); //226
+				break;
+			case 1:
+				trafico = new Carro(MathUtils.random(limIn, limSup) ,650,carritoAmarilloImage);
+				break;
+			case 2:
+				trafico = new Carro(MathUtils.random(limIn, limSup),650,carritoAzulImage);
+				break;
+			default:
+				trafico = new Carro(MathUtils.random(limIn, limSup),650,carritoGasImage);
+				break;
+		}
 		carritos.add(trafico);
 		lastCarritoTime = System.currentTimeMillis();
-		}
 	}
+}
 
