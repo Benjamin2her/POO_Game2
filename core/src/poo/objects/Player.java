@@ -11,7 +11,7 @@ public class Player extends Object{
         }
 
     public Player(int x, int y, Texture img){
-        super(x, y, 64, 64, img);
+        super(x, y, 60, 125, img);
     }
 
     public void finalize(){

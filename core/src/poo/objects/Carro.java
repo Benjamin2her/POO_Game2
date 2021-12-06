@@ -11,7 +11,7 @@ public class Carro extends Object {
     }
 
     public Carro(int x, int y, Texture img){
-        super(x, y, 64, 64, img);
+        super(x, y, 64, 129, img);
     }
 
 
@@ -23,11 +23,11 @@ public class Carro extends Object {
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
     public void speed(){
-        this.y -= 200 * Gdx.graphics.getDeltaTime();
+        this.y -= 400 * Gdx.graphics.getDeltaTime();
     } //
 
     public void speeds(){
-        this.y -= 200 * Gdx.graphics.getDeltaTime();
+        this.y -= 400 * Gdx.graphics.getDeltaTime();
     }
 
 }

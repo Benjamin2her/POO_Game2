@@ -12,7 +12,7 @@ public class Camion extends Object {
     }
 
     public Camion(int x, int y, Texture img){
-        super(x, y, 64, 64, img);
+        super(x, y, 62, 147, img);
     }
 
     protected void finalize(){

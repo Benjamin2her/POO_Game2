@@ -3,9 +3,6 @@ package poo.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,18 +12,18 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import poo.objects.Camion;
+import poo.objects.Carro;
 import poo.objects.Object;
 import poo.objects.Player;
-import poo.objects.Drop;
-import poo.objects.Hailstone;
 
 public class PooGame extends ApplicationAdapter {
 
 
-	private Texture dropWaterImage;
-	private Texture dropOilImage;
-	private Texture bucketImage;
-	private Texture hailstoneImage;
+//	private Texture dropWaterImage;
+//	private Texture dropOilImage;
+//	private Texture bucketImage;
+//	private Texture hailstoneImage;
 	private Texture camionImage;
 	private Texture highwayImage;
 	private Texture playerImage;
@@ -36,14 +33,14 @@ public class PooGame extends ApplicationAdapter {
 
 
 	//private
-	private Sound 	dropSound;
-	private Sound hitSound;
-	private Music 	rainMusic;
+//	private Sound 	dropSound;
+//	private Sound hitSound;
+//	private Music 	rainMusic;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Player player;
-	private Array<Object> rainDrops; //carros
-	private long lastDropTime;
+	private Array<Object> carritos; //carros
+	private long lastCarritoTime;
 	private int score = 0;
 	private int lives = 100;
 	private float angle = 0f;
@@ -57,10 +54,10 @@ public class PooGame extends ApplicationAdapter {
 	public void create () {
 
 		// CARGADO DE IMAGENES
-		dropWaterImage = new Texture(Gdx.files.internal("drop_water.png"));
-		dropOilImage = new Texture(Gdx.files.internal("drop_oil.png"));
-		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
-		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
+//		dropWaterImage = new Texture(Gdx.files.internal("drop_water.png"));
+//		dropOilImage = new Texture(Gdx.files.internal("drop_oil.png"));
+//		hailstoneImage = new Texture(Gdx.files.internal("hailstone.png"));
+//		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
 		camionImage = new Texture(Gdx.files.internal("trashmaster.png"));
 		highwayImage = new Texture(Gdx.files.internal("background-1.png"));
 		playerImage = new Texture(Gdx.files.internal("carrito_player.png"));
@@ -82,15 +79,13 @@ public class PooGame extends ApplicationAdapter {
 
 		// INICIALIZACIÓN DE CAMERA Y SPRITEBATCH
 		camera = new OrthographicCamera();
-		//camera.setToOrtho(false, 860, 480);
 		camera.setToOrtho(false);
 
 		batch = new SpriteBatch();
 
-		// INSTANCIAMOS LA IMAGEN DE LA CUBETA EN EL JUEGO USANDO UN RECTÁNGULO
+		// INSTANCIAMOS LA IMAGEN DEL JUGADOR EN EL JUEGO USANDO UN RECTÁNGULO
 		player	  = new Player(800/2 - 64/2, 20, playerImage);
-
-		rainDrops = new Array<Object>();
+		carritos = new Array<Object>();
 
 	}
 
@@ -117,8 +112,8 @@ public class PooGame extends ApplicationAdapter {
 		font.draw(batch, "Gasolina", 900, 350);
 		font.draw(batch, (gasolina)+"", 900, 325);
 
-		for(Object raindrop: rainDrops) {
-			batch.draw(raindrop.image, raindrop.x, raindrop.y);
+		for(Object carrito: carritos) {
+			batch.draw(carrito.image, carrito.x, carrito.y);
 		}
 		batch.end();
 
@@ -139,28 +134,29 @@ public class PooGame extends ApplicationAdapter {
 		if(player.x > 650) player.x = 650;
 
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
-		if(System.currentTimeMillis() - lastDropTime > 1000) {
-			spawnRaindrop();
-			System.out.println("Elementos: " + rainDrops.size);
+		if(System.currentTimeMillis() - lastCarritoTime > 1000) {
+			spawnCarrito();
+			System.out.println("Elementos: " + carritos.size);
 			System.runFinalization();
 			System.gc();
 		}
 
 		// RECORRE ARREGLO DE GOTAS, DETERMINA SU AVANCE MEDIANTE POLIMORFISMO, SI LLEGA AL FINAL DE PANTALLA Y SU COLISIÓN CON PLAYER
-		for (Array.ArrayIterator<Object> iter = rainDrops.iterator(); iter.hasNext(); ) {
-			Object raindrop = iter.next();
+		for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
+			Object carrito = iter.next();
 			// MÉTODO PARA COMPORTAMIENTO POLIMÓRFICO
-			raindrop.speed();
-			// DETECTA SI LA GOTA LLEGA AL SUELO
-			if(raindrop.y + 64 < 0) {
+			carrito.speed();
+			// DETECTA SI El carro se sale del mapa
+			if(carrito.y + 64 < -100) {
 				//hitSound.play();
 				iter.remove();
 				lives--;
 				System.out.println("Vidas: " + lives);
 			}
 			// DETECTA COLISIÓN CON PLAYER
-			if(raindrop.overlaps(player)) {
-				//dropSound.play();
+			if(carrito.overlaps(player)) {
+				//dropSound.play()
+				// iter.chocar();
 				iter.remove();
 				score++;
 				System.out.println("Score: " + score);
@@ -170,7 +166,7 @@ public class PooGame extends ApplicationAdapter {
 		// TERMINA EL JUEGO EN CASO DE PERDER TODAS LAS VIDAS Y ELIMINA PLAYER Y OBJETOS RESTANTES
 		if(lives == 0) {
 			player = null;
-			for (Array.ArrayIterator<Object> iter = rainDrops.iterator(); iter.hasNext(); ) {
+			for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
 				iter.next();
 				iter.remove();
 			}
@@ -184,41 +180,40 @@ public class PooGame extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
-		dropWaterImage.dispose();
-		dropOilImage.dispose();
-		hailstoneImage.dispose();
-		bucketImage.dispose();
-		//dropSound.dispose();
-		//hitSound.dispose();
-		//rainMusic.dispose();
+		playerImage.dispose();
+		camionImage.dispose();
+		carritoAmarilloImage.dispose();
+		carritoGasImage.dispose();
+		carritoAzulImage.dispose();
+		highwayImage.dispose();
 		batch.dispose();
 	}
 
 	// MÉTODO DE UTILIDAD PARA GENERAR LAS GOTAS EN EL ESCENARIO
-	private void spawnRaindrop() {
-		Object rain;
+	private void spawnCarrito() {
+		Object trafico;
 
 	int random=MathUtils.random(0, 3);
 
 	switch(random){
 			case 0:
-				rain = new Hailstone(MathUtils.random(140, 650),650, camionImage);
+				trafico = new Camion(MathUtils.random(140, 650),650, camionImage);
 				break;
 
 			case 1:
-				rain = new Drop(MathUtils.random(140, 650),650,carritoAmarilloImage);
+				trafico = new Carro(MathUtils.random(140, 650),650,carritoAmarilloImage);
 				break;
 
 			case 2:
-				rain = new Drop(MathUtils.random(140, 650),650,carritoAzulImage);
+				trafico = new Carro(MathUtils.random(140, 650),650,carritoAzulImage);
 				break;
 
 			default:
-				rain = new Drop(MathUtils.random(140, 650),650,carritoGasImage);
+				trafico = new Carro(MathUtils.random(140, 650),650,carritoGasImage);
 				break;
 			}
-		rainDrops.add(rain);
-		lastDropTime = System.currentTimeMillis();
+		carritos.add(trafico);
+		lastCarritoTime = System.currentTimeMillis();
 		}
 	}
 
