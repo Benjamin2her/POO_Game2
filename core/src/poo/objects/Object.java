@@ -29,4 +29,5 @@ public abstract class Object extends Rectangle{
     public void moverDerecha() {}
     public void moverIzquierda() {}
     public void chocar(Object a) {}
+
 }

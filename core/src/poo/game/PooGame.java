@@ -17,6 +17,7 @@ import poo.objects.Carretera;
 import poo.objects.Carro;
 import poo.objects.CarroAmarillo;
 import poo.objects.CarroAzul;
+import poo.objects.CarroGas;
 import poo.objects.Object;
 import poo.objects.Player;
 

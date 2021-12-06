@@ -10,7 +10,6 @@ public class Carro extends Object {
     public Carro(int x, int y, int w, int h, Texture img){
         super(x, y, w, h, img);
     }
-
     public Carro(int x, int y, Texture img){
         super(x, y, 64, 129, img);
     }
@@ -38,12 +37,11 @@ public class Carro extends Object {
         if(MathUtils.random(0,1) == 0){
             a.moverIzquierda();
             this.moverDerecha();
-        }else{
+        }
+        else{
             this.moverIzquierda();
             a.moverDerecha();
         }
-
-
     }
 
 
