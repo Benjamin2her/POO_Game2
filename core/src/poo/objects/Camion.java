@@ -26,9 +26,10 @@ public class Camion extends Object {
         this.y -= 500 * Gdx.graphics.getDeltaTime();
     }
 
-    public void chocar(Object a) {
+    public int chocar(Object a) {
         a.x = 390;
         a.velocidad = 0f;
        System.out.println("a destroyed");
+       return 4;
     }
 }
