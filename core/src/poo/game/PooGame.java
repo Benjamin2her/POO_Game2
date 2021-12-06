@@ -121,20 +121,20 @@ public class PooGame extends ApplicationAdapter {
 
 		// DETECTA EVENTO DE TECLADO Y AFECTA POSICIÓN DEL PLAYER
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			player.x -= 500 * Gdx.graphics.getDeltaTime();
+			player.moverIzquierda();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			player.x += 500 * Gdx.graphics.getDeltaTime();
+			player.moverDerecha();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			carretera.acelera();
-		}else{
+		}
+		else{
 			carretera.frena();
 		}
 
 		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
-		if(player.x < 140) player.x = 140;
-		if(player.x > 650) player.x = 650;
+
 
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
 		if(System.currentTimeMillis() - lastCarritoTime > 500) {
@@ -160,7 +160,11 @@ public class PooGame extends ApplicationAdapter {
 			if(carrito.overlaps(player)) {
 				//dropSound.play()
 				// iter.chocar();
-				carrito.chocar(player);
+//				a = carrito.chocar(player);
+//				switch (a){
+//					case 0:
+//						iter.remove(
+//				}
 				score++;
 				//System.out.println("Score: " + score);
 			}
