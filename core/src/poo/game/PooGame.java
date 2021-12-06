@@ -219,7 +219,7 @@ public class PooGame extends ApplicationAdapter {
 
 		switch(tipoCarro){
 			case 0:
-				trafico = new Camion(MathUtils.random(limIn, limSup), 650, camionImage); //226
+				trafico = new Camion(MathUtils.random(limIn, limSup), 650, camionImage);
 				break;
 			case 1:
 				trafico = new Carro(MathUtils.random(limIn, limSup) ,650,carritoAmarilloImage);
