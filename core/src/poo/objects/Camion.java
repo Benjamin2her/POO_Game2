@@ -26,4 +26,7 @@ public class Camion extends Object {
         this.y -= 500 * Gdx.graphics.getDeltaTime();
     }
 
+    public void chocar(Object a) {
+        //a.remove();
+    }
 }

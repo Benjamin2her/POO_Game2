@@ -134,7 +134,7 @@ public class PooGame extends ApplicationAdapter {
 		if(player.x > 650) player.x = 650;
 
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
-		if(System.currentTimeMillis() - lastCarritoTime > 1000) {
+		if(System.currentTimeMillis() - lastCarritoTime > 500) {
 			spawnCarrito();
 			System.out.println("Elementos: " + carritos.size);
 			System.runFinalization();
@@ -157,7 +157,7 @@ public class PooGame extends ApplicationAdapter {
 			if(carrito.overlaps(player)) {
 				//dropSound.play()
 				// iter.chocar();
-				iter.remove();
+				//iter.chocar(player);
 				score++;
 				System.out.println("Score: " + score);
 			}
