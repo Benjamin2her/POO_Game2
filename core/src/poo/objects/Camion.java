@@ -27,8 +27,9 @@ public class Camion extends Object {
     }
 
     public int chocar(Object a, Object b) {
-        a.x = 390;
-        a.velocidad = 0f;
+        //a.x = 390;
+        velocidad = 0f;
+        velocidadLimite = 0f;
         System.out.println("a destroyed");
         return 4;
     }

@@ -34,6 +34,15 @@ public abstract class Object extends Rectangle{
     public int getGasolina(){
         return gas;
     }
+    public void actualizaGasolina(){
+        gas -= 5;
+        if (gas < 0) {
+            gas = 0;
+            velocidad --;
+            if(velocidad < 0) velocidad = 0;
+            velocidadLimite = 0;
+        }
+    }
     public void acelera() {}
     public void frena() {}
     public void moverDerecha() {}

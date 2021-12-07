@@ -138,6 +138,7 @@ public class PooGame extends ApplicationAdapter {
 		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
 		if(System.currentTimeMillis() - lastCarritoTime > 500) {
 			spawnCarrito();
+			player.actualizaGasolina();
 			System.out.println("Elementos: " + carritos.size);
 			System.runFinalization();
 			System.gc();
