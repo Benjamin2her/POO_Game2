@@ -28,6 +28,6 @@ public abstract class Object extends Rectangle{
     public void frena() {}
     public void moverDerecha() {}
     public void moverIzquierda() {}
-    public int chocar(Object a, Object b) {return 5;}
+    public int chocar(Object a, Object b) {return 0;}
 
 }

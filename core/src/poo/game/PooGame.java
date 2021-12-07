@@ -161,7 +161,7 @@ public class PooGame extends ApplicationAdapter {
 			}
 			// DETECTA COLISIÓN CON PLAYER
 			if(carrito.overlaps(player)) {
-				int a=carrito.chocar(player, carrito);
+				int a = carrito.chocar(player, carrito);
 				//dropSound.play()
 				// iter.chocar();
 //				a = carrito.chocar(player);

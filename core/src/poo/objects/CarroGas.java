@@ -36,6 +36,7 @@ public class CarroGas extends Carro{
     public int chocar(Object a, Object b){
         //subir gasolina +100
         //carro verdeVerde
+        System.out.println("Choco verde");
         return 3;
     }
 

@@ -35,17 +35,17 @@ public class Carro extends Object {
     }
 
     public int chocar(Object player, Object enemigo){
-        int di=DetectaLadoChoque();
-
-        switch (di){
-            case 0:
-                player.moverDerecha();
-                enemigo.moverIzquierda();
-
-            case 1:
-                player.moverIzquierda();
-                enemigo.moverDerecha();
-        }
+//        int di=DetectaLadoChoque();
+//
+//        switch (di){
+//            case 0:
+//                player.moverDerecha();
+//                enemigo.moverIzquierda();
+//
+//            case 1:
+//                player.moverIzquierda();
+//                enemigo.moverDerecha();
+//        }
 //        if(MathUtils.random(0,1) == 0){
 //            a.moverIzquierda();
 //            this.moverDerecha();
@@ -54,7 +54,7 @@ public class Carro extends Object {
 //            this.moverIzquierda();
 //            a.moverDerecha();
 //        }
-         return 0;
+        return 0;
     }
 
     public int DetectaLadoChoque(){
