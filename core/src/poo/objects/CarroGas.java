@@ -34,14 +34,20 @@ public class CarroGas extends Carro{
         if(this.x > 650) this.x = 650;
     }
     public int chocar(Object a, Object b){
-        //subir gasolina +100
+        if (velocidad > 0){
+            gas += 90;
+            score += 500;
+        }
+
         //carro verdeVerde
         System.out.println("Choco verde");
         return 3;
     }
 
     public void addScore() {
-        score-=50;
+
+        score-= 1000;
+        if (score < 0) score = 0;
         System.out.println("-50 pts");
     }
 

@@ -46,7 +46,8 @@ public class CarroAzul extends Carro {
 
     public int chocar(Object player, Object enemigo){
         int di = MathUtils.random(0,1);
-
+        score -= 300;
+        if(score < 0) score = 0;
         switch (di){
             case 0:
                 player.moverDerecha();

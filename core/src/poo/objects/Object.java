@@ -10,7 +10,7 @@ public abstract class Object extends Rectangle{
     protected static float velocidad = 0f;
     protected static float velocidadLimite = 5f;
     protected static int score=0;
-    protected static int gas=0;
+    protected static int gas = 100;
 
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
@@ -25,7 +25,15 @@ public abstract class Object extends Rectangle{
     protected void finalize(){
         System.out.println("Object destroyed");
     }
-
+    public int getVelocidad(){
+        return Math.round(velocidad * 100);
+    }
+    public int getPuntos(){
+        return score;
+    }
+    public int getGasolina(){
+        return gas;
+    }
     public void acelera() {}
     public void frena() {}
     public void moverDerecha() {}

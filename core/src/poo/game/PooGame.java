@@ -46,10 +46,6 @@ public class PooGame extends ApplicationAdapter {
 	private int score = 0;
 	private int lives = 100;
 	private float angle = 0f;
-	// puntos, velocidad, gasolina
-	private int puntos = 0;
-	private int velocidad = 0;
-	private int gasolina = 100;
 	private BitmapFont font;
 	private Interfaz interfaz;
 	@Override
@@ -108,11 +104,11 @@ public class PooGame extends ApplicationAdapter {
 		font.draw(batch, "CARRITOS", 900,600);
 		font.getData().setScale(2f);
 		font.draw(batch, "Puntos", 900, 500);
-		font.draw(batch, (puntos)+"", 900, 475);
+		font.draw(batch, player.getPuntos() + "", 900, 475);
 		font.draw(batch, "Velocidad", 900, 425);
-		font.draw(batch, velocidad+"", 900, 400);
+		font.draw(batch, player.getVelocidad() + "", 900, 400);
 		font.draw(batch, "Gasolina", 900, 350);
-		font.draw(batch, (gasolina)+"", 900, 325);
+		font.draw(batch, player.getGasolina() + "", 900, 325);
 //		interfaz.actualizarInterfaz();
 
 		for(Object carrito: carritos) {
@@ -157,7 +153,10 @@ public class PooGame extends ApplicationAdapter {
 			// DETECTA SI El carro se sale del mapa Y SUMA PUNTOS DEPENDIENDO DE QUE CARRO ES
 			if(carrito.y + 64 < -100) {
 				//hitSound.play();
-				carrito.addScore();
+				if(player.getVelocidad() > 0){
+					carrito.addScore();
+				}
+
 				iter.remove();
 
 			}
@@ -177,7 +176,7 @@ public class PooGame extends ApplicationAdapter {
 
 						break;
 					case 3: // verde
-
+						iter.remove();
 						break;
 					case 4: // camion
 
