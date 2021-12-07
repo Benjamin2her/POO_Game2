@@ -30,7 +30,7 @@ public class Camion extends Object {
         //a.x = 390;
         velocidad = 0;
         gas = 0;
-        velocidadLimite = 0f;
+        velocidadLimite = 0;
         System.out.println("a destroyed");
         return 4;
     }

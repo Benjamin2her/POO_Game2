@@ -11,6 +11,7 @@ public abstract class Object extends Rectangle{
     protected static float velocidadLimite = 5f;
     protected static int score=0;
     protected static int gas = 100;
+    protected static int highScore = 0;
 
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
@@ -33,6 +34,14 @@ public abstract class Object extends Rectangle{
     }
     public int getGasolina(){
         return gas;
+    }
+    public void setHighScore(){
+        if (score > highScore)
+        highScore = score;
+    }
+
+    public int getHighScore(){
+        return  highScore;
     }
     public void actualizaGasolina(){
         gas -= 5;
