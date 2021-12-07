@@ -147,28 +147,44 @@ public class PooGame extends ApplicationAdapter {
 			System.gc();
 		}
 
-		// RECORRE ARREGLO DE GOTAS, DETERMINA SU AVANCE MEDIANTE POLIMORFISMO, SI LLEGA AL FINAL DE PANTALLA Y SU COLISIÓN CON PLAYER
+		// RECORRE ARREGLO DE CARROS, DETERMINA SU AVANCE MEDIANTE POLIMORFISMO, SI LLEGA AL FINAL DE PANTALLA Y SU COLISIÓN CON PLAYER
 		for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
 			Object carrito = iter.next();
 			// MÉTODO PARA COMPORTAMIENTO POLIMÓRFICO
 			carrito.acelera();
+
+
 			// DETECTA SI El carro se sale del mapa Y SUMA PUNTOS DEPENDIENDO DE QUE CARRO ES
 			if(carrito.y + 64 < -100) {
 				//hitSound.play();
 				iter.remove();
-				lives--;
-				System.out.println("Vidas: " + lives);
+
 			}
+
+
 			// DETECTA COLISIÓN CON PLAYER
 			if(carrito.overlaps(player)) {
 				int a = carrito.chocar(player, carrito);
 				//dropSound.play()
 				// iter.chocar();
-//				a = carrito.chocar(player);
-//				switch (a){
-//					case 0:
-//						iter.remove(
-//				}
+
+				switch (a){
+					case 1: //amarillo
+
+						break;
+					case 2: //azul
+
+						break;
+					case 3: // verde
+
+						break;
+					case 4: // camion
+
+						break;
+					default:
+						break;
+						//perdio();
+				}
 				score++;
 				//System.out.println("Score: " + score);
 			}
