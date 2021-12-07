@@ -124,10 +124,10 @@ public class PooGame extends ApplicationAdapter {
 
 		// DETECTA EVENTO DE TECLADO Y AFECTA POSICIÓN DEL PLAYER
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			player.moverIzquierda();
+			player.giraIzquierda();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			player.moverDerecha();
+			player.giraDerecha();
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			carretera.acelera();

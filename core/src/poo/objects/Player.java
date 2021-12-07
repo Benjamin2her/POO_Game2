@@ -27,20 +27,22 @@ public class Player extends Object{
         //baja el sonido
     }
     public void moverIzquierda(){
-        this.x -= 400 * Gdx.graphics.getDeltaTime();
+        this.x -= 2000  * Gdx.graphics.getDeltaTime();
         if(this.x < 140) this.x = 140;
     }
     public void moverDerecha(){
+        this.x += 2000 * Gdx.graphics.getDeltaTime();
+        if(this.x > 650) this.x = 650;
+    }
+
+    public void giraDerecha(){
         this.x += 400 * Gdx.graphics.getDeltaTime();
         if(this.x > 650) this.x = 650;
     }
 
-//    public void giraDerecha{
-//
-//    }
-//
-//    public void giraIzquierda{
-//
-//    }
+    public void giraIzquierda(){
+        this.x -= 400 * Gdx.graphics.getDeltaTime();
+        if(this.x < 140) this.x = 140;
+    }
 
 }

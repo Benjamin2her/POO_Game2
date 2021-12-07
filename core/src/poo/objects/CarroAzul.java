@@ -45,7 +45,7 @@ public class CarroAzul extends Carro {
 //    }
 
     public int chocar(Object player, Object enemigo){
-        int di=DetectaLadoChoque();
+        int di = MathUtils.random(0,1);
 
         switch (di){
             case 0:
