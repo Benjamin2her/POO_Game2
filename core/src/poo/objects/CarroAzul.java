@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 
 public class CarroAzul extends Carro {
-    public CarroAzul(int x, int y, int w, int h, Texture img){
-        super(x, y, w, h, img);
-    }
 
     public CarroAzul(int x, int y, Texture img){
         super(x, y, 64, 129, img);

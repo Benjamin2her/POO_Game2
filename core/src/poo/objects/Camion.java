@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 // CLASE Camion QUE HEREDA DE CLASE Object
 public class Camion extends Object {
 
-    // CONSTRUCTORES SOBRECARGADOS
-    public Camion(int x, int y, int w, int h, Texture img){
-        super(x, y, w, h, img);
-    }
+    // CONSTRUCTOR
 
     public Camion(int x, int y, Texture img){
         super(x, y, 62, 147, img);
@@ -27,7 +24,6 @@ public class Camion extends Object {
     }
 
     public int chocar(Object a, Object b) {
-        //a.x = 390;
         velocidad = 0;
         gas = 0;
         velocidadLimite = 0;

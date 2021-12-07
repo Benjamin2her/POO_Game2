@@ -3,7 +3,6 @@ package poo.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,7 +20,7 @@ import poo.objects.CarroAzul;
 import poo.objects.CarroGas;
 import poo.objects.Object;
 import poo.objects.Player;
-import poo.objects.Interfaz;
+
 
 public class PooGame extends ApplicationAdapter {
 	private Texture camionImage;
@@ -33,9 +32,6 @@ public class PooGame extends ApplicationAdapter {
 
 
 
-	//private
-//	private Sound 	dropSound;
-//	private Sound hitSound;
 	private Sound claxonSound;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
@@ -58,14 +54,7 @@ public class PooGame extends ApplicationAdapter {
 		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
 		carritoGasImage = new Texture(Gdx.files.internal("carrito_gas.png"));
 
-
-		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
-		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
-		//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
 		claxonSound= Gdx.audio.newSound(Gdx.files.internal("clasico.wav"));
-
-
 
 
 		//	Inicializamos font
@@ -81,10 +70,6 @@ public class PooGame extends ApplicationAdapter {
 		player	  = new Player(800/2 - 64/2, 20, playerImage);
 		carretera = new Carretera(0,0, highwayImage);
 		carritos = new Array<Object>();
-
-		// INICIA SONIDO DE FONDO
-
-
 
 	}
 
@@ -137,7 +122,7 @@ public class PooGame extends ApplicationAdapter {
 			carretera.frena();
 		}
 
-		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
+
 		if(!player.sinGasolina()) {
 
 			// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVOS CARROS
@@ -161,45 +146,20 @@ public class PooGame extends ApplicationAdapter {
 
 				// DETECTA SI El carro se sale del mapa Y SUMA PUNTOS DEPENDIENDO DE QUE CARRO ES
 				if (carrito.y + 64 < -100) {
-					//hitSound.play();
 					if (player.getVelocidad() > 0) {
 						carrito.addScore();
 					}
-
 					iter.remove();
-
 				}
 
 
 				// DETECTA COLISIÓN CON PLAYER
 				if (carrito.overlaps(player)) {
-					int a = carrito.chocar(player, carrito);
-					//dropSound.play()
-					// iter.chocar();
-
-					switch (a) {
-						case 1: //amarillo
-
-							break;
-						case 2: //azul
-
-							break;
-						case 3: // verde
-							iter.remove();
-							break;
-						case 4: // camion -
-
-
-							break;
-						default:
-							break;
-
-					}
-
+					if(carrito.chocar(player, carrito) == 3) iter.remove();
 				}
 			}
 		}
-		// TERMINA EL JUEGO EN CASO DE PERDER TODAS LAS VIDAS Y ELIMINA PLAYER Y OBJETOS RESTANTES
+		// TERMINA EL JUEGO AL QUEDARSE SIN GASOLINA
 		if(player.sinGasolina()) {
 			int i = 25;
 			int x;
@@ -214,20 +174,19 @@ public class PooGame extends ApplicationAdapter {
 				batch.end();
 				i--;
 			}while(i > 0);
-			//se podra imprimir un texto aqui?
 
-				if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) && !Gdx.input.isKeyPressed(Input.Keys.UP)) {
-					player = null;
-					for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
-						iter.next();
-						iter.remove();
-					}
 
-					System.runFinalization();
-					System.gc();
-					Gdx.app.exit();
+			if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) && !Gdx.input.isKeyPressed(Input.Keys.UP)) {
+				player = null;
+				for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
+					iter.next();
+					iter.remove();
 				}
 
+				System.runFinalization();
+				System.gc();
+				Gdx.app.exit();
+			}
 
 
 		}
@@ -244,6 +203,7 @@ public class PooGame extends ApplicationAdapter {
 		carritoAzulImage.dispose();
 		highwayImage.dispose();
 		batch.dispose();
+		claxonSound.dispose();
 	}
 
 	// MÉTODO DE UTILIDAD PARA GENERAR LoS carros EN EL ESCENARIO

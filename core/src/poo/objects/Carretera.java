@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 // CLASE Carretera QUE HEREDA DE CLASE Object
 public class Carretera extends Object{
 
-    // CONSTRUCTORES SOBRECARGADOS
-    public Carretera(int x, int y, int w, int h, Texture img){
-        super(x, y, w, h, img);
-    }
+    // CONSTRUCTOR
 
     public Carretera(int x, int y, Texture img){
         super(x, y, 840, 650, img);

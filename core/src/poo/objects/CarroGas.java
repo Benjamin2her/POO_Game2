@@ -2,14 +2,10 @@ package poo.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
+
 
 public class CarroGas extends Carro{
-    // CONSTRUCTORES SOBRECARGADOS
-    public CarroGas(int x, int y, int w, int h, Texture img){
-        super(x, y, w, h, img);
-    }
-
+    // CONSTRUCTOR
     public CarroGas(int x, int y, Texture img){
         super(x, y, 64, 129, img);
     }

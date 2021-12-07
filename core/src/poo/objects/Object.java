@@ -3,7 +3,7 @@ package poo.objects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-// CLASE PADRE QUE HEREDA DE CLASE Rectangle
+// CLASE Object QUE HEREDA DE CLASE Rectangle
 public abstract class Object extends Rectangle{
 
     public Texture image;
