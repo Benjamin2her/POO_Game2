@@ -63,7 +63,7 @@ public class PooGame extends ApplicationAdapter {
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
 		//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
-		claxonSound= Gdx.audio.newSound(Gdx.files.internal("car2.wav"));
+		claxonSound= Gdx.audio.newSound(Gdx.files.internal("clasico.wav"));
 
 
 
@@ -127,8 +127,8 @@ public class PooGame extends ApplicationAdapter {
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			player.giraDerecha();
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-			claxonSound.play(0.3f, 1.2f, 1f);
+		if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+			claxonSound.play(0.3f, 1f, 1f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			carretera.acelera();
