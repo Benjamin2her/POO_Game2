@@ -9,6 +9,8 @@ public abstract class Object extends Rectangle{
     public Texture image;
     protected static float velocidad = 0f;
     protected static float velocidadLimite = 5f;
+    protected static int score=0;
+    protected static int gas=0;
 
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
@@ -29,5 +31,6 @@ public abstract class Object extends Rectangle{
     public void moverDerecha() {}
     public void moverIzquierda() {}
     public int chocar(Object a, Object b) {return 0;}
+    public void addScore() {}
 
 }

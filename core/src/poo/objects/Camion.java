@@ -23,7 +23,7 @@ public class Camion extends Object {
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
     public void acelera(){
-        this.y -= 500 * Gdx.graphics.getDeltaTime();
+        this.y -= 100 * velocidadLimite * Gdx.graphics.getDeltaTime();
     }
 
     public int chocar(Object a, Object b) {
@@ -31,5 +31,11 @@ public class Camion extends Object {
         a.velocidad = 0f;
         System.out.println("a destroyed");
         return 4;
+    }
+
+    public void addScore() {
+        score+=100;
+        System.out.println("+100 pts");
+        velocidadLimite+=0.1;
     }
 }

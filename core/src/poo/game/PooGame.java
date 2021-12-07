@@ -157,6 +157,7 @@ public class PooGame extends ApplicationAdapter {
 			// DETECTA SI El carro se sale del mapa Y SUMA PUNTOS DEPENDIENDO DE QUE CARRO ES
 			if(carrito.y + 64 < -100) {
 				//hitSound.play();
+				carrito.addScore();
 				iter.remove();
 
 			}

@@ -23,7 +23,7 @@ public class CarroAmarillo extends Carro{
     // SOBRESCRIBIR METODO VIRTUAL DE CLASE Object, PARA SER USADO EN POLIMORFISMO
     @Override
     public void acelera(){
-        this.y -= 500 * Gdx.graphics.getDeltaTime();
+        this.y -= 100 * velocidadLimite * Gdx.graphics.getDeltaTime();
     } //
     public void moverIzquierda(){
         this.x -= 2000 * Gdx.graphics.getDeltaTime();
@@ -53,7 +53,9 @@ public class CarroAmarillo extends Carro{
 
         return 1;
     }
-    public int DetectaLadoChoque(){
-        return 0;
+
+    public void addScore() {
+        score+=50;
+        System.out.println("+50 pts");
     }
 }
