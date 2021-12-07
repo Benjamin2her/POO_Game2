@@ -20,7 +20,7 @@ import poo.objects.CarroAzul;
 import poo.objects.CarroGas;
 import poo.objects.Object;
 import poo.objects.Player;
-
+import poo.objects.Interfaz;
 public class PooGame extends ApplicationAdapter {
 
 
@@ -30,6 +30,7 @@ public class PooGame extends ApplicationAdapter {
 	private Texture carritoAzulImage;
 	private Texture carritoAmarilloImage;
 	private Texture carritoGasImage;
+
 
 
 	//private
@@ -50,7 +51,7 @@ public class PooGame extends ApplicationAdapter {
 	private int velocidad = 0;
 	private int gasolina = 100;
 	private BitmapFont font;
-	
+	private Interfaz interfaz;
 	@Override
 	public void create () {
 
@@ -62,6 +63,7 @@ public class PooGame extends ApplicationAdapter {
 		carritoAzulImage = new Texture(Gdx.files.internal("carrito_azul.png"));
 		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
 		carritoGasImage = new Texture(Gdx.files.internal("carrito_gas.png"));
+		interfaz = new Interfaz();
 
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
@@ -111,6 +113,7 @@ public class PooGame extends ApplicationAdapter {
 		font.draw(batch, velocidad+"", 900, 400);
 		font.draw(batch, "Gasolina", 900, 350);
 		font.draw(batch, (gasolina)+"", 900, 325);
+		interfaz.actualizarInterfaz();
 
 		for(Object carrito: carritos) {
 			batch.draw(carrito.image, carrito.x, carrito.y);
