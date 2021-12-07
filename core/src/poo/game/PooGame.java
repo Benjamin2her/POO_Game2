@@ -113,7 +113,7 @@ public class PooGame extends ApplicationAdapter {
 		font.draw(batch, velocidad+"", 900, 400);
 		font.draw(batch, "Gasolina", 900, 350);
 		font.draw(batch, (gasolina)+"", 900, 325);
-		interfaz.actualizarInterfaz();
+//		interfaz.actualizarInterfaz();
 
 		for(Object carrito: carritos) {
 			batch.draw(carrito.image, carrito.x, carrito.y);
