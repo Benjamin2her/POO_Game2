@@ -39,5 +39,4 @@ public class Carretera extends Object{
         this.y -= 200 * velocidad * Gdx.graphics.getDeltaTime();
     }
 
-
 }

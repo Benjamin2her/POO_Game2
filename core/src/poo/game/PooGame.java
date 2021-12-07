@@ -3,6 +3,8 @@ package poo.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -34,7 +36,7 @@ public class PooGame extends ApplicationAdapter {
 	//private
 //	private Sound 	dropSound;
 //	private Sound hitSound;
-//	private Music 	rainMusic;
+	private Sound claxonSound;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Player player;
@@ -61,11 +63,10 @@ public class PooGame extends ApplicationAdapter {
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		//hitSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
 		//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
+		claxonSound= Gdx.audio.newSound(Gdx.files.internal("car2.wav"));
 
-		// INICIA SONIDO DE FONDO
-		//rainMusic.setLooping(true);
-		//rainMusic.setVolume(0.2f);
-		//rainMusic.play();
+
+
 
 		//	Inicializamos font
 		font= new BitmapFont();
@@ -80,6 +81,10 @@ public class PooGame extends ApplicationAdapter {
 		player	  = new Player(800/2 - 64/2, 20, playerImage);
 		carretera = new Carretera(0,0, highwayImage);
 		carritos = new Array<Object>();
+
+		// INICIA SONIDO DE FONDO
+
+
 
 	}
 
@@ -121,6 +126,9 @@ public class PooGame extends ApplicationAdapter {
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			player.giraDerecha();
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+			claxonSound.play(0.3f, 1.2f, 1f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			carretera.acelera();

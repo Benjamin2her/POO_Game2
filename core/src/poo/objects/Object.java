@@ -51,6 +51,8 @@ public abstract class Object extends Rectangle{
         return (gas == 0  && velocidad == 0);
     }
 
+
+
     public void acelera() {}
     public void frena() {}
     public void moverDerecha() {}

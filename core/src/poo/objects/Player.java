@@ -20,12 +20,7 @@ public class Player extends Object{
         System.out.println("Player destroyed");
     }
     @Override
-    public void acelera() {
-        //sube sonido
-    }
-    public void frena(){
-        //baja el sonido
-    }
+
     public void moverIzquierda(){
         this.x -= 2000  * Gdx.graphics.getDeltaTime();
         if(this.x < 140) this.x = 140;
