@@ -32,17 +32,6 @@ public class CarroAzul extends Carro {
         this.x += 2000 * Gdx.graphics.getDeltaTime();
         if(this.x > 650) this.x = 650;
     }
-//    public int chocar(Object a, Object b){
-//        if(MathUtils.random(0,1) == 0){
-//            a.moverIzquierda();
-//            this.moverDerecha();
-//        }else{
-//            this.moverIzquierda();
-//            a.moverDerecha();
-//        }
-//
-//        return 2;
-//    }
 
     public int chocar(Object player, Object enemigo){
         int di = MathUtils.random(0,1);
@@ -61,14 +50,6 @@ public class CarroAzul extends Carro {
                 System.out.println("Choco azul por la izquierda");
                 break;
         }
-//        if(MathUtils.random(0,1) == 0){
-//            a.moverIzquierda();
-//            this.moverDerecha();
-//        }
-//        else{
-//            this.moverIzquierda();
-//            a.moverDerecha();
-//        }
         return 2;
     }
     public void addScore() {

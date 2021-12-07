@@ -9,9 +9,8 @@ public abstract class Object extends Rectangle{
     public Texture image;
     protected static float velocidad = 0f;
     protected static float velocidadLimite = 5f;
-    protected static int score=0;
+    protected static int score = 0;
     protected static int gas = 100;
-    protected static int highScore = 0;
 
     // CONSTRUCTOR
     public Object(int x, int y, int w, int h, Texture img){
@@ -35,14 +34,7 @@ public abstract class Object extends Rectangle{
     public int getGasolina(){
         return gas;
     }
-    public void setHighScore(){
-        if (score > highScore)
-        highScore = score;
-    }
 
-    public int getHighScore(){
-        return  highScore;
-    }
     public void actualizaGasolina(){
         gas -= 5;
         if (gas < 0) {
@@ -56,8 +48,9 @@ public abstract class Object extends Rectangle{
         }
     }
     public boolean sinGasolina(){
-        return (gas == 0  && velocidad == 0); // puedes buscar como es el and en java?, ah ya jaja
+        return (gas == 0  && velocidad == 0);
     }
+
     public void acelera() {}
     public void frena() {}
     public void moverDerecha() {}

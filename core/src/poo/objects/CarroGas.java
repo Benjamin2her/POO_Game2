@@ -38,8 +38,6 @@ public class CarroGas extends Carro{
             gas += 20;
             score += 500;
 
-
-        //carro verdeVerde
         System.out.println("Choco verde");
         return 3;
     }

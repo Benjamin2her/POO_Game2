@@ -8,28 +8,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.Timer;
-import com.sun.tools.javac.comp.Enter;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import poo.objects.Camion;
 import poo.objects.Carretera;
-import poo.objects.Carro;
 import poo.objects.CarroAmarillo;
 import poo.objects.CarroAzul;
 import poo.objects.CarroGas;
 import poo.objects.Object;
 import poo.objects.Player;
 import poo.objects.Interfaz;
+
 public class PooGame extends ApplicationAdapter {
-
-
 	private Texture camionImage;
 	private Texture highwayImage;
 	private Texture playerImage;
@@ -50,10 +42,8 @@ public class PooGame extends ApplicationAdapter {
 	private Array<Object> carritos; //carros
 	private long lastCarritoTime;
 
-
-
 	private BitmapFont font;
-	private Interfaz interfaz;
+
 	@Override
 	public void create () {
 
@@ -65,7 +55,7 @@ public class PooGame extends ApplicationAdapter {
 		carritoAzulImage = new Texture(Gdx.files.internal("carrito_azul.png"));
 		carritoAmarilloImage = new Texture(Gdx.files.internal("carrito_amarillo.png"));
 		carritoGasImage = new Texture(Gdx.files.internal("carrito_gas.png"));
-		interfaz = new Interfaz();
+
 
 		// CARGA EFECTOS DE SONIDOS Y MÚSICA DE FONDO
 		//dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
@@ -97,7 +87,6 @@ public class PooGame extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 
-		///camera.rotate(angle+= 0.1f);
 		camera.update();
 
 		// RENDERIZADO DE IMAGENES
@@ -117,9 +106,7 @@ public class PooGame extends ApplicationAdapter {
 		font.draw(batch, player.getVelocidad() + "", 900, 400);
 		font.draw(batch, "Gasolina", 900, 350);
 		font.draw(batch, player.getGasolina() + "", 900, 325);
-		font.draw(batch, "HighScore", 900, 275);
-		font.draw(batch, player.getHighScore() + "", 900, 250);
-//		interfaz.actualizarInterfaz();
+
 
 		for(Object carrito: carritos) {
 			batch.draw(carrito.image, carrito.x, carrito.y);
@@ -151,8 +138,7 @@ public class PooGame extends ApplicationAdapter {
 				spawnCarrito();
 				player.actualizaGasolina();
 				System.out.println("Elementos: " + carritos.size);
-//				System.runFinalization();
-//				System.gc();
+
 			}
 
 
@@ -297,20 +283,6 @@ public class PooGame extends ApplicationAdapter {
 		carritos.add(trafico);
 		lastCarritoTime = System.currentTimeMillis();
 	}
-
-//	private void guardarRecord(){
-//		String fileName = "my-file.txt";
-//		String encoding = "UTF-8";
-//		try{
-//			PrintWriter writer = new PrintWriter(fileName, encoding);
-//			writer.println(player.getHighScore());
-//			writer.close();
-//		}
-//		catch (IOException e){
-//			System.out.println("An error occurred.");
-//			e.printStackTrace();
-//		}
-//	}
 
 }
 
