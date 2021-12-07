@@ -179,7 +179,7 @@ public class PooGame extends ApplicationAdapter {
 					case 3: // verde
 						iter.remove();
 						break;
-					case 4: // camion
+					case 4: // camion - se acaba el juego
 
 						break;
 					default:
