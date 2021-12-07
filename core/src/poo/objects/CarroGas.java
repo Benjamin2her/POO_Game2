@@ -35,7 +35,7 @@ public class CarroGas extends Carro{
     }
     public int chocar(Object a, Object b){
 
-            gas += 15;
+            gas += 20;
             score += 500;
 
 
