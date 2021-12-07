@@ -11,6 +11,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
+import com.sun.tools.javac.comp.Enter;
 
 import poo.objects.Camion;
 import poo.objects.Carretera;
@@ -43,9 +45,9 @@ public class PooGame extends ApplicationAdapter {
 	private Carretera carretera;
 	private Array<Object> carritos; //carros
 	private long lastCarritoTime;
-	private int score = 0;
-	private int lives = 100;
-	private float angle = 0f;
+
+
+
 	private BitmapFont font;
 	private Interfaz interfaz;
 	@Override
@@ -101,8 +103,10 @@ public class PooGame extends ApplicationAdapter {
 		batch.draw( player.image, player.x, player.y);
 
 		//RENDERIZADO DE TEXTO -------------------------
-		font.draw(batch, "CARRITOS", 900,600);
 		font.getData().setScale(2f);
+		font.setColor(1,1,1,1);
+		font.draw(batch, "CARRITOS", 900,600);
+
 		font.draw(batch, "Puntos", 900, 500);
 		font.draw(batch, player.getPuntos() + "", 900, 475);
 		font.draw(batch, "Velocidad", 900, 425);
@@ -135,18 +139,23 @@ public class PooGame extends ApplicationAdapter {
 		// EVITA QUE LA IMAGEN DEL PLAYER SALGA DEL ÁREA DE JUEGO
 
 
-		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVAS GOTAS
+		// CADA SEGUNDO LLAMA MÉTODO DE UTILIDAD PARA GNERAR NUEVOS CARROS
 		if(System.currentTimeMillis() - lastCarritoTime > 500) {
-			spawnCarrito();
-			player.actualizaGasolina();
-			System.out.println("Elementos: " + carritos.size);
-			System.runFinalization();
-			System.gc();
+			if(!player.sinGasolina()){
+				spawnCarrito();
+				player.actualizaGasolina();
+				System.out.println("Elementos: " + carritos.size);
+//				System.runFinalization();
+//				System.gc();
+			}
+
 		}
 
-		// RECORRE ARREGLO DE CARROS, DETERMINA SU AVANCE MEDIANTE POLIMORFISMO, SI LLEGA AL FINAL DE PANTALLA Y SU COLISIÓN CON PLAYER
+		// RECORRE ARREGLO DE CARROS, DETERMINA SU AVANCE MEDIANTE POLIMORFISMO,
+		// SI LLEGA AL FINAL DE PANTALLA Y SU COLISIÓN CON PLAYER
 		for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
 			Object carrito = iter.next();
+
 			// MÉTODO PARA COMPORTAMIENTO POLIMÓRFICO
 			carrito.acelera();
 
@@ -169,7 +178,7 @@ public class PooGame extends ApplicationAdapter {
 				//dropSound.play()
 				// iter.chocar();
 
-				switch (a){
+				switch (a) {
 					case 1: //amarillo
 
 						break;
@@ -179,28 +188,48 @@ public class PooGame extends ApplicationAdapter {
 					case 3: // verde
 						iter.remove();
 						break;
-					case 4: // camion - se acaba el juego
+					case 4: // camion -
+
+
 
 						break;
 					default:
 						break;
-						//perdio();
+
 				}
-				score++;
-				//System.out.println("Score: " + score);
+
 			}
 		}
 
 		// TERMINA EL JUEGO EN CASO DE PERDER TODAS LAS VIDAS Y ELIMINA PLAYER Y OBJETOS RESTANTES
-		if(player.getGasolina() == 0) {
-			player = null;
-			for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
-				iter.next();
-				iter.remove();
+		if(player.sinGasolina()) {
+			int i = 25;
+			int x;
+			do{
+				if(i % 2 == 0) x = 1;
+				else x = 0;
+
+				batch.begin();
+				font.getData().setScale(5f);
+				font.setColor(1,x,x,1);
+				font.draw(batch, "GAME OVER", 200 + i, 650/2 + i);
+				batch.end();
+				i--;
+			}while(i > 0);
+			//se podra imprimir un texto aqui?
+
+			if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+				player = null;
+				for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
+					iter.next();
+					iter.remove();
+				}
+
+				System.runFinalization();
+				System.gc();
+				Gdx.app.exit();
 			}
-			System.runFinalization();
-			System.gc();
-			Gdx.app.exit();
+
 		}
 
 

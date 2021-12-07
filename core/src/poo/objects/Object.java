@@ -41,14 +41,13 @@ public abstract class Object extends Rectangle{
             velocidad --;
             if(velocidad < 0) {
                 velocidad = 0;
-
             }
             velocidadLimite = 0;
 
         }
     }
     public boolean sinGasolina(){
-        return gas == 0;
+        return (gas == 0  && velocidad == 0); // puedes buscar como es el and en java?, ah ya jaja
     }
     public void acelera() {}
     public void frena() {}

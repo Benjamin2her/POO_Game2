@@ -35,25 +35,7 @@ public class Carro extends Object {
     }
 
     public int chocar(Object player, Object enemigo){
-//        int di=DetectaLadoChoque();
-//
-//        switch (di){
-//            case 0:
-//                player.moverDerecha();
-//                enemigo.moverIzquierda();
-//
-//            case 1:
-//                player.moverIzquierda();
-//                enemigo.moverDerecha();
-//        }
-//        if(MathUtils.random(0,1) == 0){
-//            a.moverIzquierda();
-//            this.moverDerecha();
-//        }
-//        else{
-//            this.moverIzquierda();
-//            a.moverDerecha();
-//        }
+
         return 0;
     }
 
