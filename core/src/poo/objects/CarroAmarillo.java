@@ -33,7 +33,7 @@ public class CarroAmarillo extends Carro{
         this.x += 2000 * Gdx.graphics.getDeltaTime();
         if(this.x > 650) this.x = 650;
     }
-    public int chocar(Object a){
+    public int chocar(Object a, Object b){
 
         if(MathUtils.random(0,1) == 0){
             a.moverIzquierda();

@@ -33,7 +33,7 @@ public class CarroGas extends Carro{
         this.x += 2000 * Gdx.graphics.getDeltaTime();
         if(this.x > 650) this.x = 650;
     }
-    public int chocar(Object a){
+    public int chocar(Object a, Object b){
         //subir gasolina +100
         //carro verdeVerde
         return 3;

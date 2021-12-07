@@ -35,5 +35,12 @@ public class Player extends Object{
         if(this.x > 650) this.x = 650;
     }
 
+//    public void giraDerecha{
+//
+//    }
+//
+//    public void giraIzquierda{
+//
+//    }
 
 }

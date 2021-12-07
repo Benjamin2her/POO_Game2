@@ -152,7 +152,7 @@ public class PooGame extends ApplicationAdapter {
 			Object carrito = iter.next();
 			// MÉTODO PARA COMPORTAMIENTO POLIMÓRFICO
 			carrito.acelera();
-			// DETECTA SI El carro se sale del mapa
+			// DETECTA SI El carro se sale del mapa Y SUMA PUNTOS DEPENDIENDO DE QUE CARRO ES
 			if(carrito.y + 64 < -100) {
 				//hitSound.play();
 				iter.remove();
@@ -161,6 +161,7 @@ public class PooGame extends ApplicationAdapter {
 			}
 			// DETECTA COLISIÓN CON PLAYER
 			if(carrito.overlaps(player)) {
+				int a=carrito.chocar(player, carrito);
 				//dropSound.play()
 				// iter.chocar();
 //				a = carrito.chocar(player);
