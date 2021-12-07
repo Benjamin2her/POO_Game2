@@ -192,7 +192,7 @@ public class PooGame extends ApplicationAdapter {
 		}
 
 		// TERMINA EL JUEGO EN CASO DE PERDER TODAS LAS VIDAS Y ELIMINA PLAYER Y OBJETOS RESTANTES
-		if(lives == 0) {
+		if(player.getGasolina() == 0) {
 			player = null;
 			for (Array.ArrayIterator<Object> iter = carritos.iterator(); iter.hasNext(); ) {
 				iter.next();

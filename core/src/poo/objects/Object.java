@@ -39,9 +39,16 @@ public abstract class Object extends Rectangle{
         if (gas < 0) {
             gas = 0;
             velocidad --;
-            if(velocidad < 0) velocidad = 0;
+            if(velocidad < 0) {
+                velocidad = 0;
+
+            }
             velocidadLimite = 0;
+
         }
+    }
+    public boolean sinGasolina(){
+        return gas == 0;
     }
     public void acelera() {}
     public void frena() {}

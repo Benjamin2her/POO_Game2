@@ -50,4 +50,5 @@ public class CarroGas extends Carro{
         if (score < 0) score = 0;
         System.out.println("-50 pts");
     }
+
 }
